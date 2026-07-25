@@ -1,4 +1,4 @@
-# SOAL LATIHAN — GAYA OSN-P INFORMATIKA/KOMPUTER
+# SOAL LATIHAN — MODEL OSN-P INFORMATIKA/KOMPUTER
 *(Disusun mengikuti format Seleksi OSN-P 2023 Bidang Informatika/Komputer)*
 
 ---
