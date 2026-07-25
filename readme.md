@@ -140,3 +140,59 @@ Untuk semua kasus uji berlaku:
 
 ---
 ---
+
+# Penjelasan A1
+
+**Soal:** Plat nomor 4 digit `d1 d2 d3 d4` (tiap digit 0–9) disebut *unik* jika `d1 + d2 = d3 + d4`. Berapa banyak plat nomor unik yang mungkin dibuat?
+
+**Ide dasar:** Pasangan `(d1,d2)` menentukan sebuah jumlah tertentu, dan pasangan `(d3,d4)` juga menentukan sebuah jumlah. Plat dihitung unik kalau kedua jumlah itu **sama**. Jadi triknya: kelompokkan semua pasangan digit berdasarkan jumlahnya.
+
+---
+
+## Langkah 1 — Hitung berapa banyak pasangan (a,b) untuk setiap kemungkinan jumlah s
+
+Karena a,b ∈ {0,...,9}, jumlah s bisa bernilai 0 sampai 18. Untuk tiap s, banyaknya pasangan (a,b) yang jumlahnya = s adalah:
+
+- Untuk s = 0 sampai 9: ada **(s+1)** pasangan.
+  Contoh s=3 → (0,3),(1,2),(2,1),(3,0) → 4 pasangan = 3+1 ✓
+- Untuk s = 10 sampai 18: ada **(19−s)** pasangan.
+  Contoh s=17 → (8,9),(9,8) → 2 pasangan = 19−17 ✓
+
+Jadi urutan jumlah pasangan untuk s = 0,1,2,...,18 adalah:
+
+```
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+```
+
+(naik dari 1 ke 10 di tengah, lalu turun lagi ke 1 — bentuknya simetris, seperti segitiga)
+
+---
+
+## Langkah 2 — Untuk tiap jumlah s, pasangkan kiri dan kanan
+
+Plat unik dibentuk dengan memilih satu pasangan `(d1,d2)` yang jumlahnya s, **dan** satu pasangan `(d3,d4)` yang jumlahnya s juga (s yang sama). Karena keduanya dipilih bebas, kalau ada `c` pasangan yang berjumlah s, maka banyaknya kombinasi `(d1,d2)` × `(d3,d4)` untuk jumlah s tersebut adalah `c × c = c²`.
+
+---
+
+## Langkah 3 — Jumlahkan untuk semua kemungkinan s
+
+Total plat unik = jumlahkan c² untuk semua s dari 0 sampai 18:
+
+$$1^2+2^2+3^2+\dots+10^2+9^2+8^2+\dots+1^2$$
+
+Pisahkan jadi dua bagian:
+
+- **Bagian naik** (s=0..9, nilai c = 1..10):
+  $$1^2+2^2+\dots+10^2 = 385$$
+- **Bagian turun** (s=10..18, nilai c = 9..1):
+  $$9^2+8^2+\dots+1^2 = 285$$
+
+(Pakai rumus jumlah kuadrat: $\sum_{k=1}^{n}k^2 = \dfrac{n(n+1)(2n+1)}{6}$, untuk n=10 hasilnya 385, untuk n=9 hasilnya 285)
+
+**Total = 385 + 285 = 670**
+
+---
+
+## Jawaban
+
+Ada **670** kemungkinan plat nomor yang unik.
